@@ -15,37 +15,36 @@ public class DataUtil {
      * @return String (변경 후 문자)
      */
     public static String deleteHtml(Object object) {
-        if (isBlank(object)) {
+        if (isEmpty(object)) {
             return "";
         }
-        String str = String.valueOf(object);
-        str = str.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
-//        str = str.replaceAll("\r\n", "");
-//        str = str.replaceAll("\r", "");
-//        str = str.replaceAll("\n", "");
-//        str = str.replaceAll("\t", "");
-        return str;
+        String str = String.valueOf(object)
+            .replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
+        return trimSpace(str);
     }
 
     /**
-     * <p>null 및 공백 체크</p>
+     * <p>공백 체크</p>
      *
      * @param object (체크할 문자형, 숫자형 객체)
      * @return boolean (체크 결과)
      */
-    public static boolean isBlank(Object object) {
-        if (object == null) {
-            return true;
-        }
-        String str = String.valueOf(object);
-        if (str.length() == 0) {
-            return true;
-        }
-        for (int i = 0; i < str.length(); i++) {
-            if ((!Character.isWhitespace(str.charAt(i)))) {
-                return false;
-            }
-        }
-        return true;
+    public static boolean isEmpty(Object object) {
+        return object == null || String.valueOf(object).length() == 0;
+    }
+
+    /**
+     * <p>공백 제거</p>
+     *
+     * @param str (변경할 문자)
+     * @return String (변경 후 문자)
+     */
+    public static String trimSpace(String str) {
+        str = str.replaceAll("\r\n", "");
+        str = str.replaceAll("\r", "");
+        str = str.replaceAll("\n", "");
+        str = str.replaceAll("\t", "");
+        str = str.replaceAll(" ", "");
+        return str;
     }
 }

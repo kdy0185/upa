@@ -21,14 +21,14 @@ class DataUtilTest {
         html4 = DataUtil.deleteHtml(html4);
 
         // then
-        assertThat(html1).isEqualTo("no html");
+        assertThat(html1).isEqualTo("nohtml");
         assertThat(html2).isEmpty();
         assertThat(html3).isEqualTo("service");
         assertThat(html4).isEmpty();
     }
 
     @Test
-    public void isBlankTest() throws Exception {
+    public void isEmptyTest() throws Exception {
         // given
         String obj1 = null;
         String obj2 = "";
@@ -37,16 +37,16 @@ class DataUtilTest {
         int obj5 = 123;
 
         // when
-        boolean flag1 = DataUtil.isBlank(obj1);
-        boolean flag2 = DataUtil.isBlank(obj2);
-        boolean flag3 = DataUtil.isBlank(obj3);
-        boolean flag4 = DataUtil.isBlank(obj4);
-        boolean flag5 = DataUtil.isBlank(obj5);
+        boolean flag1 = DataUtil.isEmpty(obj1);
+        boolean flag2 = DataUtil.isEmpty(obj2);
+        boolean flag3 = DataUtil.isEmpty(obj3);
+        boolean flag4 = DataUtil.isEmpty(obj4);
+        boolean flag5 = DataUtil.isEmpty(obj5);
 
         // then
         assertThat(flag1).isTrue();
         assertThat(flag2).isTrue();
-        assertThat(flag3).isTrue();
+        assertThat(flag3).isFalse();
         assertThat(flag4).isFalse();
         assertThat(flag5).isFalse();
     }
