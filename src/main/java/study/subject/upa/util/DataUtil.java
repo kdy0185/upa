@@ -18,6 +18,7 @@ public class DataUtil {
         if (isEmpty(object)) {
             return "";
         }
+
         String str = String.valueOf(object)
             .replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
         return trimSpace(str);
@@ -46,5 +47,19 @@ public class DataUtil {
         str = str.replaceAll("\t", "");
         str = str.replaceAll(" ", "");
         return str;
+    }
+
+    /**
+     * <p>영문 + 숫자 출력</p>
+     *
+     * @param str (검사할 문자열)
+     * @return String (변경 후 문자)
+     */
+    public static String printAlphaNumeric(String str) {
+        if (isEmpty(str)) {
+            return "";
+        }
+
+        return str.replaceAll("[\\W_]", "");
     }
 }

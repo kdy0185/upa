@@ -50,4 +50,28 @@ class DataUtilTest {
         assertThat(flag4).isFalse();
         assertThat(flag5).isFalse();
     }
+
+    @Test
+    public void printAlphaNumericTest() throws Exception {
+        // given
+        String str1 = null;
+        String str2 = "AbcD123";
+        String str3 = "테스트";
+        String str4 = "/user/system";
+        String str5 = "a,b_c";
+
+        // when
+        str1 = DataUtil.printAlphaNumeric(str1);
+        str2 = DataUtil.printAlphaNumeric(str2);
+        str3 = DataUtil.printAlphaNumeric(str3);
+        str4 = DataUtil.printAlphaNumeric(str4);
+        str5 = DataUtil.printAlphaNumeric(str5);
+
+        // then
+        assertThat(str1).isEmpty();
+        assertThat(str2).isEqualTo("AbcD123");
+        assertThat(str3).isEmpty();
+        assertThat(str4).isEqualTo("usersystem");
+        assertThat(str5).isEqualTo("abc");
+    }
 }
