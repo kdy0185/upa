@@ -11,8 +11,16 @@ public class DataPrintController {
 
     private final DataPrintService dataPrintService;
 
-    @GetMapping("/api/v1/basicParsing")
-    public String basicParsing(@RequestParam("url") String paramUrl) {
-        return dataPrintService.parseHtml(paramUrl);
+    @GetMapping("/api/v2/typeParsing")
+    public String typeParsing(@RequestParam("url") String paramUrl,
+        @RequestParam("dataType") String dataType) {
+        String resultData = dataPrintService.parseHtml(paramUrl);
+
+        // 노출 유형 - H : Html 태그 제외, T : Text 전체
+        if ("H".equals(dataType)) {
+            resultData = dataPrintService.deleteHtml(resultData);
+        }
+
+        return resultData;
     }
 }

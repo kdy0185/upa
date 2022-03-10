@@ -28,4 +28,33 @@ public class DataPrintService {
 
         return sb.toString();
     }
+
+    public String deleteHtml(Object object) {
+        if (isBlank(object)) {
+            return "";
+        }
+        String str = String.valueOf(object);
+        str = str.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
+//        str = str.replaceAll("\r\n", "");
+//        str = str.replaceAll("\r", "");
+//        str = str.replaceAll("\n", "");
+//        str = str.replaceAll("\t", "");
+        return str;
+    }
+
+    public boolean isBlank(Object object) {
+        if (object == null) {
+            return true;
+        }
+        String str = String.valueOf(object);
+        if (str.length() == 0) {
+            return true;
+        }
+        for (int i = 0; i < str.length(); i++) {
+            if ((!Character.isWhitespace(str.charAt(i)))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
