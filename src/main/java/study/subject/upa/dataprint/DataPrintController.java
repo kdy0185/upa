@@ -25,8 +25,8 @@ public class DataPrintController {
      * @param dataType (노출 유형)
      * @return String (파싱한 데이터)
      */
-    @GetMapping("/api/v2/typeParsing")
-    public String typeParsing(@RequestParam("url") String paramUrl,
+    @GetMapping("/api/v3/alphaNumericParsing")
+    public String alphaNumericParsing(@RequestParam("url") String paramUrl,
         @RequestParam("dataType") String dataType) {
         String resultData = dataPrintService.parseHtml(paramUrl);
 
@@ -35,6 +35,6 @@ public class DataPrintController {
             resultData = DataUtil.deleteHtml(resultData);
         }
 
-        return resultData;
+        return DataUtil.printAlphaNumeric(resultData);
     }
 }
