@@ -30,14 +30,6 @@ public class DataUtil {
     /**
      * <p>null 및 공백 체크</p>
      *
-     * <pre>
-     * DataUtil.isBlank(null)    = true
-     * DataUtil.isBlank("")      = true
-     * DataUtil.isBlank("  ")    = true
-     * DataUtil.isBlank(" bob ") = false
-     * DataUtil.isBlank(123)     = false
-     * </pre>
-     *
      * @param object (체크할 문자형, 숫자형 객체)
      * @return boolean (체크 결과)
      */
