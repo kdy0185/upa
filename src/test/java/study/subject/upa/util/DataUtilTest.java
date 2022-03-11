@@ -148,4 +148,26 @@ class DataUtilTest {
         String result = ab.collect(Collectors.joining());
         assertThat(result).isEqualTo("abcdef");
     }
+
+    @Test
+    public void printUnitTest() throws Exception {
+        // given
+        String str1 = "abcdefghij";
+        int unit1 = 0;
+        int unit2 = 1;
+        int unit3 = 3;
+        int unit4 = 12;
+
+        // when
+        String result1 = DataUtil.printUnit(str1, unit1);
+        String result2 = DataUtil.printUnit(str1, unit2);
+        String result3 = DataUtil.printUnit(str1, unit3);
+        String result4 = DataUtil.printUnit(str1, unit4);
+
+        // then
+        System.out.println(result1);
+        System.out.println(result2);
+        System.out.println(result3);
+        System.out.println(result4);
+    }
 }

@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.function.Consumer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -96,10 +94,54 @@ public class DataUtil {
      * @return String (변경 후 문자)
      */
     public static String dataSwap(String str) {
+        if (isEmpty(str)) {
+            return "";
+        }
+
         String[] engArr = str.replaceAll("[0-9]", "").split("");
         String[] numArr = str.replaceAll("[a-zA-Z]", "").split("");
 
         return interleave(Stream.of(engArr), Stream.of(numArr)).collect(Collectors.joining());
+    }
+
+    /**
+     * <p>단위 묶음별 출력</p>
+     *
+     * @param str  (출력할 문자열)
+     * @param unit (출력 단위)
+     * @return String (변경 후 문자)
+     */
+    public static String printUnit(String str, int unit) {
+        if (isEmpty(str)) {
+            return "";
+        }
+
+        if (unit <= 0) {
+            return "유효한 단위가 아닙니다.";
+        }
+
+        if (str.length() <= unit) {
+            unit = str.length();
+        }
+
+        int idx = str.length() - str.length() % unit;
+        return dataFormat(str.substring(0, idx), str.substring(idx));
+    }
+
+    /**
+     * <p>출력 문자 포맷</p>
+     *
+     * @param unitStr (몫)
+     * @param restStr (나머지)
+     * @return String (포맷 후 문자)
+     */
+    public static String dataFormat(String unitStr, String restStr) {
+        return "+----------------------------------------+" + System.lineSeparator()
+            + "+----------------------------------------+" + System.lineSeparator()
+            + "몫 : " + unitStr + System.lineSeparator()
+            + "나머지 : " + restStr + System.lineSeparator()
+            + "+----------------------------------------+" + System.lineSeparator()
+            + "+----------------------------------------+" + System.lineSeparator();
     }
 
     /**
