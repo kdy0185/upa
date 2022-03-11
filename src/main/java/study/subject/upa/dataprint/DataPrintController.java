@@ -23,11 +23,13 @@ public class DataPrintController {
      *
      * @param paramUrl (파싱할 URL)
      * @param dataType (노출 유형)
+     * @param unit (출력 묶음 단위)
      * @return String (파싱한 데이터)
      */
-    @GetMapping("/api/v5/swapParsing")
-    public String swapParsing(@RequestParam("url") String paramUrl,
-        @RequestParam("dataType") String dataType) {
+    @GetMapping("/api/v6/unitParsing")
+    public String unitParsing(@RequestParam("url") String paramUrl,
+        @RequestParam("dataType") String dataType,
+        @RequestParam("unit") int unit) {
         String resultData = dataPrintService.parseHtml(paramUrl);
 
         // 노출 유형 - H : Html 태그 제외, T : Text 전체
@@ -37,6 +39,7 @@ public class DataPrintController {
 
         resultData = DataUtil.printAlphaNumeric(resultData);
         resultData = DataUtil.dataSort(resultData);
-        return DataUtil.dataSwap(resultData);
+        resultData = DataUtil.dataSwap(resultData);
+        return DataUtil.printUnit(resultData, unit);
     }
 }
