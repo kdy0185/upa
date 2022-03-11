@@ -46,7 +46,7 @@ public class DataParseService {
 
         String str = String.valueOf(object)
             .replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
-        return trimSpace(str);
+        return trimWhiteSpace(str);
     }
 
     /**

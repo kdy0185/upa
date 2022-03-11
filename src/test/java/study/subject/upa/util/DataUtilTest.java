@@ -57,4 +57,22 @@ class DataUtilTest {
         assertThat(flag4).isFalse();
         assertThat(flag5).isFalse();
     }
+
+    @Test
+    public void trimWhiteSpaceTest() throws Exception {
+        // given
+        String str1 = "a b c";
+        String str2 = "a    b   c";
+        String str3 = " abc ";
+
+        // when
+        str1 = DataUtil.trimWhiteSpace(str1);
+        str2 = DataUtil.trimWhiteSpace(str2);
+        str3 = DataUtil.trimWhiteSpace(str3);
+
+        // then
+        assertThat(str1).isEqualTo("abc");
+        assertThat(str2).isEqualTo("abc");
+        assertThat(str3).isEqualTo("abc");
+    }
 }

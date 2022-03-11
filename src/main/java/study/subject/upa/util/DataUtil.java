@@ -65,13 +65,8 @@ public class DataUtil {
      * @param str (변경할 문자)
      * @return String (변경 후 문자)
      */
-    public static String trimSpace(String str) {
-        str = str.replaceAll("\r\n", "");
-        str = str.replaceAll("\r", "");
-        str = str.replaceAll("\n", "");
-        str = str.replaceAll("\t", "");
-        str = str.replaceAll(" ", "");
-        return str;
+    public static String trimWhiteSpace(String str) {
+        return str.replaceAll("\\s", "");
     }
 
     /**
