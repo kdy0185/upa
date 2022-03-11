@@ -1,9 +1,14 @@
 package study.subject.upa.util;
 
 import java.util.Arrays;
-import java.util.Comparator;
+import java.util.Spliterator;
+import java.util.Spliterators;
+import java.util.function.Consumer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 /**
  * @Class : DataUtil
@@ -82,5 +87,51 @@ public class DataUtil {
         String[] arrStr = str.split("");
         Arrays.sort(arrStr, String.CASE_INSENSITIVE_ORDER);
         return String.join("", arrStr);
+    }
+
+    /**
+     * <p>데이터 교차</p>
+     *
+     * @param str (교차할 문자열)
+     * @return String (변경 후 문자)
+     */
+    public static String dataSwap(String str) {
+        String[] engArr = str.replaceAll("[0-9]", "").split("");
+        String[] numArr = str.replaceAll("[a-zA-Z]", "").split("");
+
+        return interleave(Stream.of(engArr), Stream.of(numArr)).collect(Collectors.joining());
+    }
+
+    /**
+     * <p>스트림 교차 기능</p>
+     *
+     * @param a (교차 대상 스트림)
+     * @param b (교차 대상 스트림)
+     * @return Stream (교차 적용한 스트림)
+     */
+    public static <T> Stream<T> interleave(Stream<? extends T> a, Stream<? extends T> b) {
+        Spliterator<? extends T> spA = a.spliterator(), spB = b.spliterator();
+        long s = spA.estimateSize() + spB.estimateSize();
+        if (s < 0) {
+            s = Long.MAX_VALUE;
+        }
+        int ch = spA.characteristics() & spB.characteristics()
+            & (Spliterator.NONNULL | Spliterator.SIZED);
+        ch |= Spliterator.ORDERED;
+
+        return StreamSupport.stream(new Spliterators.AbstractSpliterator<T>(s, ch) {
+            Spliterator<? extends T> sp1 = spA, sp2 = spB;
+
+            @Override
+            public boolean tryAdvance(Consumer<? super T> action) {
+                Spliterator<? extends T> sp = sp1;
+                if (sp.tryAdvance(action)) {
+                    sp1 = sp2;
+                    sp2 = sp;
+                    return true;
+                }
+                return sp2.tryAdvance(action);
+            }
+        }, false);
     }
 }

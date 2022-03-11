@@ -25,8 +25,8 @@ public class DataPrintController {
      * @param dataType (노출 유형)
      * @return String (파싱한 데이터)
      */
-    @GetMapping("/api/v4/sortParsing")
-    public String sortParsing(@RequestParam("url") String paramUrl,
+    @GetMapping("/api/v5/swapParsing")
+    public String swapParsing(@RequestParam("url") String paramUrl,
         @RequestParam("dataType") String dataType) {
         String resultData = dataPrintService.parseHtml(paramUrl);
 
@@ -36,6 +36,7 @@ public class DataPrintController {
         }
 
         resultData = DataUtil.printAlphaNumeric(resultData);
-        return DataUtil.dataSort(resultData);
+        resultData = DataUtil.dataSort(resultData);
+        return DataUtil.dataSwap(resultData);
     }
 }

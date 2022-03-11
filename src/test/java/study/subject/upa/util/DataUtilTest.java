@@ -2,6 +2,8 @@ package study.subject.upa.util;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 
 class DataUtilTest {
@@ -107,5 +109,43 @@ class DataUtilTest {
         assertThat(str3).isEqualTo("0156899");
         assertThat(str4).isEqualTo("1239bMmS");
         assertThat(str5).isEqualTo("039aAkNu");
+    }
+
+    @Test
+    public void crossTest() throws Exception {
+        // given
+        String str1 = "134478889bcCmnST";
+        String str2 = "23566aBbgils";
+        String str3 = "12ab";
+        String str4 = "12345";
+        String str5 = "abcd";
+
+        // when
+        str1 = DataUtil.dataSwap(str1);
+        str2 = DataUtil.dataSwap(str2);
+        str3 = DataUtil.dataSwap(str3);
+        str4 = DataUtil.dataSwap(str4);
+        str5 = DataUtil.dataSwap(str5);
+
+        // then
+        assertThat(str1).isEqualTo("b1c3C4m4n7S8T889");
+        assertThat(str2).isEqualTo("a2B3b5g6i6ls");
+        assertThat(str3).isEqualTo("a1b2");
+        assertThat(str4).isEqualTo("12345");
+        assertThat(str5).isEqualTo("abcd");
+    }
+
+    @Test
+    public void interleaveTest() throws Exception {
+        // given
+        Stream<String> a = Stream.of("a", "c", "e");
+        Stream<String> b = Stream.of("b", "d", "f");
+
+        // when
+        Stream<String> ab = DataUtil.interleave(a, b);
+
+        // then
+        String result = ab.collect(Collectors.joining());
+        assertThat(result).isEqualTo("abcdef");
     }
 }
