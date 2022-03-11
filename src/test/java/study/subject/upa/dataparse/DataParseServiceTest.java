@@ -1,4 +1,4 @@
-package study.subject.upa.dataprint;
+package study.subject.upa.dataparse;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DataPrintServiceTest {
+class DataParseServiceTest {
 
     @Autowired
-    DataPrintService dataPrintService;
+    DataParseService dataParseService;
 
     @Test
     public void dataParseHtmlTest() throws Exception {
@@ -21,10 +21,10 @@ class DataPrintServiceTest {
         String html4 = "<img src='http://google.com/' alt='sample.jpg' />";
 
         // when
-        html1 = dataPrintService.dataParseHtml(html1);
-        html2 = dataPrintService.dataParseHtml(html2);
-        html3 = dataPrintService.dataParseHtml(html3);
-        html4 = dataPrintService.dataParseHtml(html4);
+        html1 = dataParseService.dataParseHtml(html1);
+        html2 = dataParseService.dataParseHtml(html2);
+        html3 = dataParseService.dataParseHtml(html3);
+        html4 = dataParseService.dataParseHtml(html4);
 
         // then
         assertThat(html1).isEqualTo("nohtml");
@@ -43,11 +43,11 @@ class DataPrintServiceTest {
         String str5 = "a,b_c";
 
         // when
-        str1 = dataPrintService.dataParseAlphaNumeric(str1);
-        str2 = dataPrintService.dataParseAlphaNumeric(str2);
-        str3 = dataPrintService.dataParseAlphaNumeric(str3);
-        str4 = dataPrintService.dataParseAlphaNumeric(str4);
-        str5 = dataPrintService.dataParseAlphaNumeric(str5);
+        str1 = dataParseService.dataParseAlphaNumeric(str1);
+        str2 = dataParseService.dataParseAlphaNumeric(str2);
+        str3 = dataParseService.dataParseAlphaNumeric(str3);
+        str4 = dataParseService.dataParseAlphaNumeric(str4);
+        str5 = dataParseService.dataParseAlphaNumeric(str5);
 
         // then
         assertThat(str1).isEmpty();
@@ -67,11 +67,11 @@ class DataPrintServiceTest {
         String str5 = "u90aNA3k";
 
         // when
-        str1 = dataPrintService.dataParseSort(str1);
-        str2 = dataPrintService.dataParseSort(str2);
-        str3 = dataPrintService.dataParseSort(str3);
-        str4 = dataPrintService.dataParseSort(str4);
-        str5 = dataPrintService.dataParseSort(str5);
+        str1 = dataParseService.dataParseSort(str1);
+        str2 = dataParseService.dataParseSort(str2);
+        str3 = dataParseService.dataParseSort(str3);
+        str4 = dataParseService.dataParseSort(str4);
+        str5 = dataParseService.dataParseSort(str5);
 
         // then
         assertThat(str1).isEmpty();
@@ -91,11 +91,11 @@ class DataPrintServiceTest {
         String str5 = "abcd";
 
         // when
-        str1 = dataPrintService.dataParseSwap(str1);
-        str2 = dataPrintService.dataParseSwap(str2);
-        str3 = dataPrintService.dataParseSwap(str3);
-        str4 = dataPrintService.dataParseSwap(str4);
-        str5 = dataPrintService.dataParseSwap(str5);
+        str1 = dataParseService.dataParseSwap(str1);
+        str2 = dataParseService.dataParseSwap(str2);
+        str3 = dataParseService.dataParseSwap(str3);
+        str4 = dataParseService.dataParseSwap(str4);
+        str5 = dataParseService.dataParseSwap(str5);
 
         // then
         assertThat(str1).isEqualTo("b1c3C4m4n7S8T889");
@@ -115,10 +115,10 @@ class DataPrintServiceTest {
         int unit4 = 12;
 
         // when
-        String result1 = dataPrintService.dataParseUnit(str1, unit1);
-        String result2 = dataPrintService.dataParseUnit(str1, unit2);
-        String result3 = dataPrintService.dataParseUnit(str1, unit3);
-        String result4 = dataPrintService.dataParseUnit(str1, unit4);
+        String result1 = dataParseService.dataParseUnit(str1, unit1);
+        String result2 = dataParseService.dataParseUnit(str1, unit2);
+        String result3 = dataParseService.dataParseUnit(str1, unit3);
+        String result4 = dataParseService.dataParseUnit(str1, unit4);
 
         // then
         System.out.println(result1);

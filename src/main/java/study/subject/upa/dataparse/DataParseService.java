@@ -1,4 +1,4 @@
-package study.subject.upa.dataprint;
+package study.subject.upa.dataparse;
 
 import static study.subject.upa.util.DataUtil.*;
 
@@ -14,13 +14,13 @@ import org.springframework.stereotype.Service;
 import study.subject.upa.util.support.CustomStreamSupport;
 
 /**
- * @Class : DataPrintService
+ * @Class : DataParseService
  * @Author : KDW
  * @Date : 2022-03-10
  * @Description : URL 파싱 API Service
  */
 @Service
-public class DataPrintService {
+public class DataParseService {
 
     /**
      * <p>URL 파싱</p>
