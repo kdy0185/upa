@@ -1,5 +1,10 @@
 package study.subject.upa.util;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * @Class : DataUtil
  * @Author : KDW
@@ -61,5 +66,20 @@ public class DataUtil {
         }
 
         return str.replaceAll("[\\W_]", "");
+    }
+
+    /**
+     * <p>데이터 정렬</p>
+     *
+     * @param str (정렬할 문자열)
+     * @return String (변경 후 문자)
+     */
+    public static String dataSort(String str) {
+        if (isEmpty(str)) {
+            return "";
+        }
+
+        return Stream.of(str.split("")).sorted(new CustomComparator())
+            .collect(Collectors.joining());
     }
 }

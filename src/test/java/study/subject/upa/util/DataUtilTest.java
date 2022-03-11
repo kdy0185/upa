@@ -74,4 +74,28 @@ class DataUtilTest {
         assertThat(str4).isEqualTo("usersystem");
         assertThat(str5).isEqualTo("abc");
     }
+
+    @Test
+    public void sortTest() throws Exception {
+        // given
+        String str1 = null;
+        String str2 = "ib4gEQ9";
+        String str3 = "8916590";
+        String str4 = "eDcBaEdCbA";
+        String str5 = "u90aNA3k";
+
+        // when
+        str1 = DataUtil.dataSort(str1);
+        str2 = DataUtil.dataSort(str2);
+        str3 = DataUtil.dataSort(str3);
+        str4 = DataUtil.dataSort(str4);
+        str5 = DataUtil.dataSort(str5);
+
+        // then
+        assertThat(str1).isEmpty();
+        assertThat(str2).isEqualTo("49bEgiQ");
+        assertThat(str3).isEqualTo("0156899");
+        assertThat(str4).isEqualTo("AaBbCcDdEe");
+        assertThat(str5).isEqualTo("039AakNu");
+    }
 }
