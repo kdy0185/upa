@@ -9,27 +9,6 @@ import org.junit.jupiter.api.Test;
 class DataUtilTest {
 
     @Test
-    public void deleteHtmlTest() throws Exception {
-        // given
-        String html1 = "no html";
-        String html2 = "<br/>";
-        String html3 = "<div>service</div>";
-        String html4 = "<img src='http://google.com/' alt='sample.jpg' />";
-
-        // when
-        html1 = DataUtil.deleteHtml(html1);
-        html2 = DataUtil.deleteHtml(html2);
-        html3 = DataUtil.deleteHtml(html3);
-        html4 = DataUtil.deleteHtml(html4);
-
-        // then
-        assertThat(html1).isEqualTo("nohtml");
-        assertThat(html2).isEmpty();
-        assertThat(html3).isEqualTo("service");
-        assertThat(html4).isEmpty();
-    }
-
-    @Test
     public void isEmptyTest() throws Exception {
         // given
         String obj1 = null;
@@ -54,88 +33,6 @@ class DataUtilTest {
     }
 
     @Test
-    public void printAlphaNumericTest() throws Exception {
-        // given
-        String str1 = null;
-        String str2 = "AbcD123";
-        String str3 = "테스트";
-        String str4 = "/user/system";
-        String str5 = "a,b_c";
-
-        // when
-        str1 = DataUtil.printAlphaNumeric(str1);
-        str2 = DataUtil.printAlphaNumeric(str2);
-        str3 = DataUtil.printAlphaNumeric(str3);
-        str4 = DataUtil.printAlphaNumeric(str4);
-        str5 = DataUtil.printAlphaNumeric(str5);
-
-        // then
-        assertThat(str1).isEmpty();
-        assertThat(str2).isEqualTo("AbcD123");
-        assertThat(str3).isEmpty();
-        assertThat(str4).isEqualTo("usersystem");
-        assertThat(str5).isEqualTo("abc");
-    }
-
-    @Test
-    public void compareTest() throws Exception {
-        // given
-
-        // when
-
-        // then
-
-    }
-
-    @Test
-    public void sortTest() throws Exception {
-        // given
-        String str1 = null;
-        String str2 = "ib4gEQ9";
-        String str3 = "8916590";
-        String str4 = "9M3Sm1b2";
-        String str5 = "u90aNA3k";
-
-        // when
-        str1 = DataUtil.dataSort(str1);
-        str2 = DataUtil.dataSort(str2);
-        str3 = DataUtil.dataSort(str3);
-        str4 = DataUtil.dataSort(str4);
-        str5 = DataUtil.dataSort(str5);
-
-        // then
-        assertThat(str1).isEmpty();
-        assertThat(str2).isEqualTo("49bEgiQ");
-        assertThat(str3).isEqualTo("0156899");
-        assertThat(str4).isEqualTo("1239bMmS");
-        assertThat(str5).isEqualTo("039aAkNu");
-    }
-
-    @Test
-    public void crossTest() throws Exception {
-        // given
-        String str1 = "134478889bcCmnST";
-        String str2 = "23566aBbgils";
-        String str3 = "12ab";
-        String str4 = "12345";
-        String str5 = "abcd";
-
-        // when
-        str1 = DataUtil.dataSwap(str1);
-        str2 = DataUtil.dataSwap(str2);
-        str3 = DataUtil.dataSwap(str3);
-        str4 = DataUtil.dataSwap(str4);
-        str5 = DataUtil.dataSwap(str5);
-
-        // then
-        assertThat(str1).isEqualTo("b1c3C4m4n7S8T889");
-        assertThat(str2).isEqualTo("a2B3b5g6i6ls");
-        assertThat(str3).isEqualTo("a1b2");
-        assertThat(str4).isEqualTo("12345");
-        assertThat(str5).isEqualTo("abcd");
-    }
-
-    @Test
     public void interleaveTest() throws Exception {
         // given
         Stream<String> a = Stream.of("a", "c", "e");
@@ -147,27 +44,5 @@ class DataUtilTest {
         // then
         String result = ab.collect(Collectors.joining());
         assertThat(result).isEqualTo("abcdef");
-    }
-
-    @Test
-    public void printUnitTest() throws Exception {
-        // given
-        String str1 = "abcdefghij";
-        int unit1 = 0;
-        int unit2 = 1;
-        int unit3 = 3;
-        int unit4 = 12;
-
-        // when
-        String result1 = DataUtil.printUnit(str1, unit1);
-        String result2 = DataUtil.printUnit(str1, unit2);
-        String result3 = DataUtil.printUnit(str1, unit3);
-        String result4 = DataUtil.printUnit(str1, unit4);
-
-        // then
-        System.out.println(result1);
-        System.out.println(result2);
-        System.out.println(result3);
-        System.out.println(result4);
     }
 }

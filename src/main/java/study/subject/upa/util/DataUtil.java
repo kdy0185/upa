@@ -1,10 +1,8 @@
 package study.subject.upa.util;
 
-import java.util.Arrays;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -15,22 +13,6 @@ import java.util.stream.StreamSupport;
  * @Description : Data 관련 util 클래스
  */
 public class DataUtil {
-
-    /**
-     * <p>HTML 태그 제거</p>
-     *
-     * @param object (변경할 문자형 객체)
-     * @return String (변경 후 문자)
-     */
-    public static String deleteHtml(Object object) {
-        if (isEmpty(object)) {
-            return "";
-        }
-
-        String str = String.valueOf(object)
-            .replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
-        return trimSpace(str);
-    }
 
     /**
      * <p>공백 체크</p>
@@ -55,77 +37,6 @@ public class DataUtil {
         str = str.replaceAll("\t", "");
         str = str.replaceAll(" ", "");
         return str;
-    }
-
-    /**
-     * <p>영문 + 숫자 출력</p>
-     *
-     * @param str (검사할 문자열)
-     * @return String (변경 후 문자)
-     */
-    public static String printAlphaNumeric(String str) {
-        if (isEmpty(str)) {
-            return "";
-        }
-
-        return str.replaceAll("[\\W_]", "");
-    }
-
-    /**
-     * <p>데이터 정렬</p>
-     *
-     * @param str (정렬할 문자열)
-     * @return String (변경 후 문자)
-     */
-    public static String dataSort(String str) {
-        if (isEmpty(str)) {
-            return "";
-        }
-
-        String[] arrStr = str.split("");
-        Arrays.sort(arrStr, String.CASE_INSENSITIVE_ORDER);
-        return String.join("", arrStr);
-    }
-
-    /**
-     * <p>데이터 교차</p>
-     *
-     * @param str (교차할 문자열)
-     * @return String (변경 후 문자)
-     */
-    public static String dataSwap(String str) {
-        if (isEmpty(str)) {
-            return "";
-        }
-
-        String[] engArr = str.replaceAll("[0-9]", "").split("");
-        String[] numArr = str.replaceAll("[a-zA-Z]", "").split("");
-
-        return interleave(Stream.of(engArr), Stream.of(numArr)).collect(Collectors.joining());
-    }
-
-    /**
-     * <p>단위 묶음별 출력</p>
-     *
-     * @param str  (출력할 문자열)
-     * @param unit (출력 단위)
-     * @return String (변경 후 문자)
-     */
-    public static String printUnit(String str, int unit) {
-        if (isEmpty(str)) {
-            return "";
-        }
-
-        if (unit <= 0) {
-            return "유효한 단위가 아닙니다.";
-        }
-
-        if (str.length() <= unit) {
-            unit = str.length();
-        }
-
-        int idx = str.length() - str.length() % unit;
-        return dataFormat(str.substring(0, idx), str.substring(idx));
     }
 
     /**
