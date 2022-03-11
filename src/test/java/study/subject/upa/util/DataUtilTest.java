@@ -1,13 +1,38 @@
 package study.subject.upa.util;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.io.BufferedReader;
+import java.io.Reader;
+import java.io.StringReader;
 import org.junit.jupiter.api.Test;
-import study.subject.upa.util.support.CustomStreamSupport;
 
 class DataUtilTest {
+
+    @Test
+    public void getUrlTest() throws Exception {
+        // given
+        String paramUrl = "http://google.com/";
+
+        // when
+        BufferedReader br = DataUtil.getUrl(paramUrl);
+
+        // then
+        assertThat(br).isNotNull();
+    }
+
+    @Test
+    public void getHtmlTest() throws Exception {
+        // given
+        Reader reader = new StringReader("<img src='http://google.com/' alt='sample.jpg' />");
+        BufferedReader br = new BufferedReader(reader);
+
+        // when
+        String str = DataUtil.getHtml(br);
+
+        // then
+        System.out.println(str);
+    }
 
     @Test
     public void isEmptyTest() throws Exception {

@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
+import study.subject.upa.util.DataUtil;
 import study.subject.upa.util.support.CustomStreamSupport;
 
 /**
@@ -29,22 +30,7 @@ public class DataParseService {
      * @return String (파싱한 데이터)
      */
     public String dataParseUrl(String paramUrl) {
-        StringBuilder sb = new StringBuilder();
-
-        try {
-            URL url = new URL(paramUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                sb.append(line).append("\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return sb.toString();
+        return getHtml(getUrl(paramUrl));
     }
 
     /**

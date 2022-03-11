@@ -1,5 +1,11 @@
 package study.subject.upa.util;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.function.Consumer;
@@ -13,6 +19,35 @@ import java.util.stream.StreamSupport;
  * @Description : Data 관련 util 클래스
  */
 public class DataUtil {
+
+    public static BufferedReader getUrl(String paramUrl) {
+        BufferedReader br = null;
+
+        try {
+            URL url = new URL(paramUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return br;
+    }
+
+    public static String getHtml(BufferedReader br) {
+        StringBuilder sb = new StringBuilder();
+        String line;
+
+        try {
+            while ((line = br.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return sb.toString();
+    }
 
     /**
      * <p>공백 체크</p>
