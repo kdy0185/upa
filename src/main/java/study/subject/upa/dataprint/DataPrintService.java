@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
+import study.subject.upa.util.support.CustomStreamSupport;
 
 /**
  * @Class : DataPrintService
@@ -106,7 +107,7 @@ public class DataPrintService {
         String[] engArr = str.replaceAll("[0-9]", "").split("");
         String[] numArr = str.replaceAll("[a-zA-Z]", "").split("");
 
-        return interleave(Stream.of(engArr), Stream.of(numArr)).collect(Collectors.joining());
+        return CustomStreamSupport.interleave(Stream.of(engArr), Stream.of(numArr)).collect(Collectors.joining());
     }
 
     /**

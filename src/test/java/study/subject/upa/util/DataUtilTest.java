@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
+import study.subject.upa.util.support.CustomStreamSupport;
 
 class DataUtilTest {
 
@@ -39,7 +40,7 @@ class DataUtilTest {
         Stream<String> b = Stream.of("b", "d", "f");
 
         // when
-        Stream<String> ab = DataUtil.interleave(a, b);
+        Stream<String> ab = CustomStreamSupport.interleave(a, b);
 
         // then
         String result = ab.collect(Collectors.joining());
