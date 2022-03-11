@@ -76,12 +76,22 @@ class DataUtilTest {
     }
 
     @Test
+    public void compareTest() throws Exception {
+        // given
+
+        // when
+
+        // then
+
+    }
+
+    @Test
     public void sortTest() throws Exception {
         // given
         String str1 = null;
         String str2 = "ib4gEQ9";
         String str3 = "8916590";
-        String str4 = "eDcBaEdCbA";
+        String str4 = "9M3Sm1b2";
         String str5 = "u90aNA3k";
 
         // when
@@ -95,7 +105,7 @@ class DataUtilTest {
         assertThat(str1).isEmpty();
         assertThat(str2).isEqualTo("49bEgiQ");
         assertThat(str3).isEqualTo("0156899");
-        assertThat(str4).isEqualTo("AaBbCcDdEe");
-        assertThat(str5).isEqualTo("039AakNu");
+        assertThat(str4).isEqualTo("1239bMmS");
+        assertThat(str5).isEqualTo("039aAkNu");
     }
 }

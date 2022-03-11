@@ -79,7 +79,8 @@ public class DataUtil {
             return "";
         }
 
-        return Stream.of(str.split("")).sorted(new CustomComparator())
-            .collect(Collectors.joining());
+        String[] arrStr = str.split("");
+        Arrays.sort(arrStr, String.CASE_INSENSITIVE_ORDER);
+        return String.join("", arrStr);
     }
 }
