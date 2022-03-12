@@ -1,4 +1,4 @@
-package study.subject.upa.dataparse;
+package study.subject.upa.domain.dataparse.entity;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;

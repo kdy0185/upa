@@ -1,10 +1,12 @@
-package study.subject.upa.dataparse;
+package study.subject.upa.domain.dataparse.controller;
 
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import study.subject.upa.domain.dataparse.service.DataParseService;
+import study.subject.upa.domain.dataparse.entity.DataParseVO;
 
 /**
  * @Class : DataParseController

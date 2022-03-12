@@ -1,4 +1,4 @@
-package study.subject.upa.util.support;
+package study.subject.upa.global.support;
 
 import java.util.Spliterator;
 import java.util.Spliterators;

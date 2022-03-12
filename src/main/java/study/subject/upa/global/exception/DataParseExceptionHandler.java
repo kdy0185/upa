@@ -1,4 +1,4 @@
-package study.subject.upa.util;
+package study.subject.upa.global.exception;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +8,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import study.subject.upa.global.exception.entity.ErrorResponse;
+import study.subject.upa.global.exception.entity.ErrorStatus;
 
 /**
  * @Class : DataParseExceptionHandler

@@ -1,16 +1,16 @@
-package study.subject.upa.dataparse;
+package study.subject.upa.domain.dataparse.service;
 
-import static study.subject.upa.util.DataUtil.dataFormat;
-import static study.subject.upa.util.DataUtil.getHtml;
-import static study.subject.upa.util.DataUtil.getUrl;
-import static study.subject.upa.util.DataUtil.isEmpty;
-import static study.subject.upa.util.DataUtil.trimWhiteSpace;
+import static study.subject.upa.global.util.DataParseUtil.dataFormat;
+import static study.subject.upa.global.util.DataParseUtil.getHtml;
+import static study.subject.upa.global.util.DataParseUtil.getUrl;
+import static study.subject.upa.global.util.DataParseUtil.isEmpty;
+import static study.subject.upa.global.util.DataParseUtil.trimWhiteSpace;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
-import study.subject.upa.util.support.CustomStreamSupport;
+import study.subject.upa.global.support.CustomStreamSupport;
 
 /**
  * @Class : DataParseService

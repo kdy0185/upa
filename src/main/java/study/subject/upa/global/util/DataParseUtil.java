@@ -1,4 +1,4 @@
-package study.subject.upa.util;
+package study.subject.upa.global.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,12 +7,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * @Class : DataUtil
+ * @Class : DataParseUtil
  * @Author : KDW
  * @Date : 2022-03-10
  * @Description : Data 관련 util 클래스
  */
-public class DataUtil {
+public class DataParseUtil {
 
     /**
      * <p>URL 내 정보 조회</p>
@@ -83,11 +83,6 @@ public class DataUtil {
      * @return String (포맷 후 문자)
      */
     public static String dataFormat(String unitStr, String restStr) {
-        return "+----------------------------------------+" + System.lineSeparator()
-            + "+----------------------------------------+" + System.lineSeparator()
-            + "몫 : " + unitStr + System.lineSeparator()
-            + "나머지 : " + restStr + System.lineSeparator()
-            + "+----------------------------------------+" + System.lineSeparator()
-            + "+----------------------------------------+" + System.lineSeparator();
+        return "몫 : " + unitStr + System.lineSeparator() + "나머지 : " + restStr;
     }
 }

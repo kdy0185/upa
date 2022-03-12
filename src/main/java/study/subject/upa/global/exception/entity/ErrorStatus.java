@@ -1,4 +1,4 @@
-package study.subject.upa.util;
+package study.subject.upa.global.exception.entity;
 
 import lombok.Getter;
 

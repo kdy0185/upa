@@ -1,4 +1,4 @@
-package study.subject.upa.util;
+package study.subject.upa.global.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -7,14 +7,15 @@ import java.io.Reader;
 import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import study.subject.upa.global.util.DataParseUtil;
 
 /**
- * @Class : DataUtilTest
+ * @Class : DataParseUtilTest
  * @Author : KDW
  * @Date : 2022-03-12
  * @Description : util 기능 관련 테스트 Class
  */
-class DataUtilTest {
+class DataParseUtilTest {
 
     @Test
     @DisplayName("URL 내 정보 조회 기능 테스트")
@@ -23,7 +24,7 @@ class DataUtilTest {
         String paramUrl = "http://google.com/";
 
         // when
-        BufferedReader br = DataUtil.getUrl(paramUrl);
+        BufferedReader br = DataParseUtil.getUrl(paramUrl);
 
         // then
         assertThat(br).isNotNull();
@@ -37,7 +38,7 @@ class DataUtilTest {
         BufferedReader br = new BufferedReader(reader);
 
         // when
-        String str = DataUtil.getHtml(br);
+        String str = DataParseUtil.getHtml(br);
 
         // then
         System.out.println(str);
@@ -54,11 +55,11 @@ class DataUtilTest {
         int obj5 = 123;
 
         // when
-        boolean flag1 = DataUtil.isEmpty(obj1);
-        boolean flag2 = DataUtil.isEmpty(obj2);
-        boolean flag3 = DataUtil.isEmpty(obj3);
-        boolean flag4 = DataUtil.isEmpty(obj4);
-        boolean flag5 = DataUtil.isEmpty(obj5);
+        boolean flag1 = DataParseUtil.isEmpty(obj1);
+        boolean flag2 = DataParseUtil.isEmpty(obj2);
+        boolean flag3 = DataParseUtil.isEmpty(obj3);
+        boolean flag4 = DataParseUtil.isEmpty(obj4);
+        boolean flag5 = DataParseUtil.isEmpty(obj5);
 
         // then
         assertThat(flag1).isTrue();
@@ -77,9 +78,9 @@ class DataUtilTest {
         String str3 = " abc ";
 
         // when
-        str1 = DataUtil.trimWhiteSpace(str1);
-        str2 = DataUtil.trimWhiteSpace(str2);
-        str3 = DataUtil.trimWhiteSpace(str3);
+        str1 = DataParseUtil.trimWhiteSpace(str1);
+        str2 = DataParseUtil.trimWhiteSpace(str2);
+        str3 = DataParseUtil.trimWhiteSpace(str3);
 
         // then
         assertThat(str1).isEqualTo("abc");

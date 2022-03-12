@@ -1,4 +1,4 @@
-package study.subject.upa.util;
+package study.subject.upa.global.exception.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
