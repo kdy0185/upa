@@ -6,10 +6,10 @@ import static study.subject.upa.global.util.DataParseUtil.getUrl;
 import static study.subject.upa.global.util.DataParseUtil.isEmpty;
 import static study.subject.upa.global.util.DataParseUtil.trimWhiteSpace;
 
-import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
+import study.subject.upa.global.support.CustomComparator;
 import study.subject.upa.global.support.CustomStreamSupport;
 
 /**
@@ -71,9 +71,8 @@ public class DataParseService {
             return "";
         }
 
-        String[] arrStr = str.split("");
-        Arrays.sort(arrStr, String.CASE_INSENSITIVE_ORDER);
-        return String.join("", arrStr);
+        return Stream.of(str.split("")).sorted(new CustomComparator())
+            .collect(Collectors.joining());
     }
 
     /**
