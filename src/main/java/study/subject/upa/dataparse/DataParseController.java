@@ -24,7 +24,7 @@ public class DataParseController {
      * @param dataParseVO (파라미터 정보)
      * @return String (파싱한 데이터)
      */
-    @GetMapping("/api/v7/dataParsing")
+    @GetMapping("/api/dataParsing")
     public String dataParsing(@RequestBody @Valid DataParseVO dataParseVO) {
         String resultData = dataParseService.dataParseUrl(dataParseVO.getUrl());
 
