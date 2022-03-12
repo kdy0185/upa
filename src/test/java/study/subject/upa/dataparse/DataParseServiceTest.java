@@ -2,10 +2,17 @@ package study.subject.upa.dataparse;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+/**
+ * @Class : DataParseServiceTest
+ * @Author : KDW
+ * @Date : 2022-03-12
+ * @Description : Service 관련 테스트 Class
+ */
 @SpringBootTest
 class DataParseServiceTest {
 
@@ -13,6 +20,7 @@ class DataParseServiceTest {
     DataParseService dataParseService;
 
     @Test
+    @DisplayName("HTML 태그 제거 기능 테스트")
     public void dataParseHtmlTest() throws Exception {
         // given
         String html1 = "no html";
@@ -34,6 +42,7 @@ class DataParseServiceTest {
     }
 
     @Test
+    @DisplayName("영문 + 숫자 출력 기능 테스트")
     public void dataParseAlphaNumericTest() throws Exception {
         // given
         String str1 = null;
@@ -58,6 +67,7 @@ class DataParseServiceTest {
     }
 
     @Test
+    @DisplayName("데이터 정렬 기능 테스트")
     public void dataParseSortTest() throws Exception {
         // given
         String str1 = null;
@@ -82,6 +92,7 @@ class DataParseServiceTest {
     }
 
     @Test
+    @DisplayName("데이터 교차 기능 테스트")
     public void dataParseSwapTest() throws Exception {
         // given
         String str1 = "134478889bcCmnST";
@@ -106,6 +117,7 @@ class DataParseServiceTest {
     }
 
     @Test
+    @DisplayName("단위 묶음별 데이터 출력 기능 테스트")
     public void dataParseUnitTest() throws Exception {
         // given
         String str1 = "abcdefghij";

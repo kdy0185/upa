@@ -14,6 +14,12 @@ import java.net.URL;
  */
 public class DataUtil {
 
+    /**
+     * <p>URL 내 정보 조회</p>
+     *
+     * @param paramUrl (입력 URL)
+     * @return BufferedReader (버퍼 단위로 파싱한 데이터)
+     */
     public static BufferedReader getUrl(String paramUrl) {
         BufferedReader br = null;
 
@@ -28,6 +34,12 @@ public class DataUtil {
         return br;
     }
 
+    /**
+     * <p>HTML 정보 조회</p>
+     *
+     * @param br (버퍼 단위 데이터)
+     * @return String (파싱한 문자열)
+     */
     public static String getHtml(BufferedReader br) {
         StringBuilder sb = new StringBuilder();
         String line;

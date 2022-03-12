@@ -6,6 +6,12 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+/**
+ * @Class : CustomStreamSupport
+ * @Author : KDW
+ * @Date : 2022-03-12
+ * @Description : 사용자 정의 Stream Support Class
+ */
 public class CustomStreamSupport {
 
     /**

@@ -1,13 +1,11 @@
 package study.subject.upa.dataparse;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
-import org.springframework.format.annotation.NumberFormat;
 
 /**
  * @Class : DataParseVO

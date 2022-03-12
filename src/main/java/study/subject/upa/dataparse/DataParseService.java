@@ -96,7 +96,7 @@ public class DataParseService {
     }
 
     /**
-     * <p>단위 묶음별 출력</p>
+     * <p>단위 묶음별 데이터 출력</p>
      *
      * @param str  (출력할 문자열)
      * @param unit (출력 단위)
