@@ -1,6 +1,6 @@
 package study.subject.upa.util.support;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

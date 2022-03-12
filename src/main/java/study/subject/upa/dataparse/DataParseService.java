@@ -1,17 +1,15 @@
 package study.subject.upa.dataparse;
 
-import static study.subject.upa.util.DataUtil.*;
+import static study.subject.upa.util.DataUtil.dataFormat;
+import static study.subject.upa.util.DataUtil.getHtml;
+import static study.subject.upa.util.DataUtil.getUrl;
+import static study.subject.upa.util.DataUtil.isEmpty;
+import static study.subject.upa.util.DataUtil.trimWhiteSpace;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
-import study.subject.upa.util.DataUtil;
 import study.subject.upa.util.support.CustomStreamSupport;
 
 /**
@@ -36,17 +34,16 @@ public class DataParseService {
     /**
      * <p>HTML 태그 제거</p>
      *
-     * @param object (변경할 문자형 객체)
+     * @param str (변경할 문자열)
      * @return String (변경 후 문자)
      */
-    public String dataParseHtml(Object object) {
-        if (isEmpty(object)) {
+    public String dataParseHtml(String str) {
+        if (isEmpty(str)) {
             return "";
         }
 
-        String str = String.valueOf(object)
-            .replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
-        return trimWhiteSpace(str);
+        String regex = "<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>";
+        return trimWhiteSpace(str.replaceAll(regex, ""));
     }
 
     /**
@@ -93,7 +90,9 @@ public class DataParseService {
         String[] engArr = str.replaceAll("[0-9]", "").split("");
         String[] numArr = str.replaceAll("[a-zA-Z]", "").split("");
 
-        return CustomStreamSupport.interleave(Stream.of(engArr), Stream.of(numArr)).collect(Collectors.joining());
+        Stream<String> swapStream = CustomStreamSupport.interleave(Stream.of(engArr),
+            Stream.of(numArr));
+        return swapStream.collect(Collectors.joining());
     }
 
     /**
