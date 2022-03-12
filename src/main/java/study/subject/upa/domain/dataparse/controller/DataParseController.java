@@ -1,12 +1,13 @@
 package study.subject.upa.domain.dataparse.controller;
 
+import io.swagger.annotations.ApiOperation;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import study.subject.upa.domain.dataparse.service.DataParseService;
 import study.subject.upa.domain.dataparse.entity.DataParseVO;
+import study.subject.upa.domain.dataparse.service.DataParseService;
 
 /**
  * @Class : DataParseController
@@ -26,7 +27,8 @@ public class DataParseController {
      * @param dataParseVO (파라미터 정보)
      * @return String (파싱한 데이터)
      */
-    @GetMapping("/api/dataParsing")
+    @ApiOperation(value = "URL 파싱")
+    @PostMapping("/api/dataParsing")
     public String dataParsing(@RequestBody @Valid DataParseVO dataParseVO) {
         String resultData = dataParseService.dataParseUrl(dataParseVO.getUrl());
 
