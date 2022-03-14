@@ -1,4 +1,4 @@
-package study.subject.upa.dataparse;
+package study.subject.upa.domain.dataparse.controller;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -15,7 +15,6 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import study.subject.upa.domain.dataparse.controller.DataParseController;
 
 /**
  * @Class : DataParseControllerTest

@@ -1,91 +1,106 @@
 package study.subject.upa.global.util;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import org.springframework.stereotype.Component;
 import study.subject.upa.domain.dataparse.dto.DataParseResponse;
+import study.subject.upa.domain.dataparse.dto.DataType;
+import study.subject.upa.global.support.CustomComparator;
+import study.subject.upa.global.support.CustomStreamSupport;
 
 /**
  * @Class : DataParseUtil
  * @Author : KDW
  * @Date : 2022-03-10
- * @Description : Data 관련 util 클래스
+ * @Description : Data 관련 util Class
  */
+@Component
 public class DataParseUtil {
 
     /**
-     * <p>URL 내 정보 조회</p>
+     * <p>HTML 태그 제거</p>
      *
-     * @param paramUrl (입력 URL)
-     * @return BufferedReader (버퍼 단위로 파싱한 데이터)
-     */
-    public static BufferedReader getUrl(String paramUrl) {
-        BufferedReader br = null;
-
-        try {
-            URL url = new URL(paramUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return br;
-    }
-
-    /**
-     * <p>HTML 정보 조회</p>
-     *
-     * @param br (버퍼 단위 데이터)
-     * @return String (파싱한 문자열)
-     */
-    public static String getHtml(BufferedReader br) {
-        StringBuilder sb = new StringBuilder();
-        String line;
-
-        try {
-            while ((line = br.readLine()) != null) {
-                sb.append(line).append("\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return sb.toString();
-    }
-
-    /**
-     * <p>공백 체크</p>
-     *
-     * @param object (체크할 문자형, 숫자형 객체)
-     * @return boolean (체크 결과)
-     */
-    public static boolean isEmpty(Object object) {
-        return object == null || String.valueOf(object).length() == 0;
-    }
-
-    /**
-     * <p>공백 제거</p>
-     *
-     * @param str (변경할 문자)
+     * @param str      (변경할 문자열)
+     * @param dataType (노출 유형)
      * @return String (변경 후 문자)
      */
-    public static String trimWhiteSpace(String str) {
-        return str.replaceAll("\\s", "");
+    public String dataParseHtml(String str, DataType dataType) {
+        if (StringUtil.isEmpty(str)) {
+            return "";
+        }
+
+        if (DataType.REMOVE_HTML.equals(dataType)) {
+            str = str.replaceAll(Constants.HTML_PATTERN, Constants.EMPTY);
+        }
+
+        return StringUtil.trimWhiteSpace(str);
     }
 
     /**
-     * <p>출력 문자 포맷</p>
+     * <p>영문 + 숫자 출력</p>
      *
-     * @param piecesStr (몫)
-     * @param restStr (나머지)
+     * @param str (검사할 문자열)
+     * @return String (변경 후 문자)
+     */
+    public String dataParseAlphaNumeric(String str) {
+        if (StringUtil.isEmpty(str)) {
+            return "";
+        }
+
+        return str.replaceAll(Constants.NOT_ALPHA_NUMERIC_PATTERN, Constants.EMPTY);
+    }
+
+    /**
+     * <p>데이터 정렬</p>
+     *
+     * @param str (정렬할 문자열)
+     * @return String (변경 후 문자)
+     */
+    public String dataParseSort(String str) {
+        if (StringUtil.isEmpty(str)) {
+            return "";
+        }
+
+        return Stream.of(str.split("")).sorted(new CustomComparator())
+            .collect(Collectors.joining());
+    }
+
+    /**
+     * <p>데이터 교차</p>
+     *
+     * @param str (교차할 문자열)
+     * @return String (변경 후 문자)
+     */
+    public String dataParseSwap(String str) {
+        if (StringUtil.isEmpty(str)) {
+            return "";
+        }
+
+        String[] engArr = str.replaceAll(Constants.NUM_PATTERN, Constants.EMPTY).split("");
+        String[] numArr = str.replaceAll(Constants.ENG_PATTERN, Constants.EMPTY).split("");
+
+        Stream<String> swapStream = CustomStreamSupport.interleave(Stream.of(engArr),
+            Stream.of(numArr));
+        return swapStream.collect(Collectors.joining());
+    }
+
+    /**
+     * <p>단위별 데이터 묶음</p>
+     *
+     * @param str  (출력할 문자열)
+     * @param unit (출력 단위)
      * @return DataParseResponse (응답 데이터)
      */
-    public static DataParseResponse dataFormat(String piecesStr, String restStr) {
-        piecesStr = "몫 : " + piecesStr;
-        restStr = "나머지 : " + restStr;
-        return new DataParseResponse(piecesStr, restStr);
+    public DataParseResponse dataParseUnit(String str, int unit) {
+        if (str.length() <= unit) {
+            unit = str.length();
+        }
+
+        if (unit == 0) {
+            throw new ArithmeticException();
+        }
+
+        int idx = str.length() - str.length() % unit;
+        return new DataParseResponse(str.substring(0, idx), str.substring(idx));
     }
 }
