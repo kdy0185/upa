@@ -10,6 +10,7 @@ import lombok.Getter;
  */
 @Getter
 public enum ErrorStatus {
+    INVALID_URL("EL000", "유효하지 않은 URL 입니다."),
     MESSAGE_NOT_READABLE("EM400", "입력 형식이 올바르지 않습니다."),
     METHOD_NOT_VALID("EV400", "요청 값이 올바르지 않습니다."),
     ROOT_EXCEPTION("ER500", "알 수 없는 오류가 발생하였습니다.");

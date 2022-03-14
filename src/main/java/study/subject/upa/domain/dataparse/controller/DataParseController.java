@@ -1,12 +1,14 @@
 package study.subject.upa.domain.dataparse.controller;
 
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import study.subject.upa.domain.dataparse.entity.DataParseVO;
+import study.subject.upa.domain.dataparse.dto.DataParseRequest;
+import study.subject.upa.domain.dataparse.dto.DataParseResponse;
 import study.subject.upa.domain.dataparse.service.DataParseService;
 
 /**
@@ -24,22 +26,14 @@ public class DataParseController {
     /**
      * <p>URL 파싱</p>
      *
-     * @param dataParseVO (파라미터 정보)
-     * @return String (파싱한 데이터)
+     * @param request (요청 정보)
+     * @return ResponseEntity (응답 데이터)
      */
-    @ApiOperation(value = "URL 파싱")
+    @Operation(summary = "URL 파싱", description = "URL 파싱 및 데이터 가공")
     @PostMapping("/api/dataParsing")
-    public String dataParsing(@RequestBody @Valid DataParseVO dataParseVO) {
-        String resultData = dataParseService.dataParseUrl(dataParseVO.getUrl());
-
-        // 노출 유형 - H : Html 태그 제외, T : Text 전체
-        if ("H".equals(dataParseVO.getDataType())) {
-            resultData = dataParseService.dataParseHtml(resultData);
-        }
-
-        resultData = dataParseService.dataParseAlphaNumeric(resultData);
-        resultData = dataParseService.dataParseSort(resultData);
-        resultData = dataParseService.dataParseSwap(resultData);
-        return dataParseService.dataParseUnit(resultData, dataParseVO.getUnit());
+    public ResponseEntity<DataParseResponse> dataParsing(
+        @RequestBody @Valid DataParseRequest request) {
+        DataParseResponse response = dataParseService.dataParsing(request);
+        return ResponseEntity.ok().body(response);
     }
 }

@@ -6,7 +6,7 @@ import java.util.Comparator;
  * @Class : CustomComparator
  * @Author : KDW
  * @Date : 2022-03-11
- * @Description : 사용자 정의 Comparator 클래스
+ * @Description : 사용자 정의 Comparator Class
  */
 public class CustomComparator implements Comparator<String> {
 
