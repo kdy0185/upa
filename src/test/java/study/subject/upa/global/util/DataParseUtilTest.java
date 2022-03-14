@@ -133,9 +133,7 @@ class DataParseUtilTest {
 
         // then
         assertThatThrownBy(
-            () -> {
-                dataParseUtil.dataParseUnit(str1, unit1);
-            }
+            () -> dataParseUtil.dataParseUnit(str1, unit1)
         ).isInstanceOf(ArithmeticException.class);
         assertAll(
             () -> assertThat(response2.getPiecesStr()).isEqualTo("abcdefghij"),

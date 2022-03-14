@@ -4,6 +4,12 @@ import java.io.IOException;
 import org.jsoup.Jsoup;
 import org.springframework.stereotype.Component;
 
+/**
+ * @Class : UrlConnector
+ * @Author : KDW
+ * @Date : 2022-03-14
+ * @Description : URL Connector Class
+ */
 @Component
 public class UrlConnector {
 
