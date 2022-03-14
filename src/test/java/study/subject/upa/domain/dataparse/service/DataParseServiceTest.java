@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import study.subject.upa.domain.dataparse.dto.DataType;
 import study.subject.upa.domain.dataparse.service.DataParseService;
 
 /**
@@ -30,10 +31,10 @@ class DataParseServiceTest {
         String html4 = "<img src='http://google.com/' alt='sample.jpg' />";
 
         // when
-        html1 = dataParseService.dataParseHtml(html1);
-        html2 = dataParseService.dataParseHtml(html2);
-        html3 = dataParseService.dataParseHtml(html3);
-        html4 = dataParseService.dataParseHtml(html4);
+        html1 = dataParseService.dataParseHtml(html1, DataType.REMOVE_HTML);
+        html2 = dataParseService.dataParseHtml(html2, DataType.REMOVE_HTML);
+        html3 = dataParseService.dataParseHtml(html3, DataType.REMOVE_HTML);
+        html4 = dataParseService.dataParseHtml(html4, DataType.REMOVE_HTML);
 
         // then
         assertThat(html1).isEqualTo("nohtml");

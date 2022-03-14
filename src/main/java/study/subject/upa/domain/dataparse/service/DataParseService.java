@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 import study.subject.upa.domain.dataparse.dto.DataParseRequest;
 import study.subject.upa.domain.dataparse.dto.DataParseResponse;
+import study.subject.upa.domain.dataparse.dto.DataType;
 import study.subject.upa.global.support.CustomComparator;
 import study.subject.upa.global.support.CustomStreamSupport;
 
@@ -31,12 +32,7 @@ public class DataParseService {
      */
     public DataParseResponse dataParsing(DataParseRequest request) {
         String resultData = dataParseUrl(request.getUrl());
-
-        // 노출 유형 - H : Html 태그 제외, T : Text 전체
-        if ("H".equals(request.getDataType())) {
-            resultData = dataParseHtml(resultData);
-        }
-
+        resultData = dataParseHtml(resultData, request.getDataType());
         resultData = dataParseAlphaNumeric(resultData);
         resultData = dataParseSort(resultData);
         resultData = dataParseSwap(resultData);
@@ -57,15 +53,21 @@ public class DataParseService {
      * <p>HTML 태그 제거</p>
      *
      * @param str (변경할 문자열)
+     * @param dataType (노출 유형)
      * @return String (변경 후 문자)
      */
-    public String dataParseHtml(String str) {
+    public String dataParseHtml(String str, DataType dataType) {
         if (isEmpty(str)) {
             return "";
         }
 
-        String regex = "<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>";
-        return trimWhiteSpace(str.replaceAll(regex, ""));
+        String htmlRegex = "<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>";
+
+        if (DataType.REMOVE_HTML.equals(dataType)) {
+            str = str.replaceAll(htmlRegex, "");
+        }
+
+        return trimWhiteSpace(str);
     }
 
     /**
