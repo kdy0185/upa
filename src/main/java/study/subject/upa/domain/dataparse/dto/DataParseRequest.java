@@ -1,11 +1,12 @@
 package study.subject.upa.domain.dataparse.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.URL;
 
 /**
@@ -17,16 +18,15 @@ import org.hibernate.validator.constraints.URL;
 @Data
 public class DataParseRequest {
 
-    @ApiModelProperty(value = "파싱할 URL")
+    @Schema(description = "파싱할 URL", defaultValue = "http://google.com/")
     @NotEmpty(message = "URL은 필수로 입력해야 합니다.")
     @URL(message = "URL 형식이 맞지 않습니다.")
     private String url;
 
-    @ApiModelProperty(value = "노출 유형")
-    @NotEmpty(message = "노출 유형은 필수로 입력해야 합니다.")
+    @Schema(description = "노출 유형", defaultValue = "REMOVE_HTML")
     private DataType dataType;
 
-    @ApiModelProperty(value = "출력 묶음 단위")
+    @Schema(description = "출력 묶음 단위", defaultValue = "20")
     @Positive(message = "1 이상의 숫자를 입력해야 합니다.")
     private int unit;
 }

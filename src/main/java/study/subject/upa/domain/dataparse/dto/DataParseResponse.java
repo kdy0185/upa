@@ -1,5 +1,6 @@
 package study.subject.upa.domain.dataparse.dto;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
  * @Date : 2022-03-14
  * @Description : URL 파싱 API Response
  */
+@Getter
 @RequiredArgsConstructor
 public class DataParseResponse {
 

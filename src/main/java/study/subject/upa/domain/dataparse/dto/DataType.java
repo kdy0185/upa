@@ -1,6 +1,6 @@
 package study.subject.upa.domain.dataparse.dto;
 
-import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * @Class : DataType
@@ -8,7 +8,7 @@ import lombok.Getter;
  * @Date : 2022-03-14
  * @Description : 노출 유형 정보가 담긴 enum Class
  */
-@Getter
+@RequiredArgsConstructor
 public enum DataType {
     REMOVE_HTML, // HTML 태그 제외
     ALL_TEXT // Text 전체

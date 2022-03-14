@@ -1,6 +1,6 @@
 package study.subject.upa.domain.dataparse.controller;
 
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +29,7 @@ public class DataParseController {
      * @param request (요청 정보)
      * @return ResponseEntity (응답 데이터)
      */
-    @ApiOperation(value = "URL 파싱")
+    @Operation(summary = "URL 파싱", description = "URL 파싱 및 데이터 가공")
     @PostMapping("/api/dataParsing")
     public ResponseEntity<DataParseResponse> dataParsing(
         @RequestBody @Valid DataParseRequest request) {
