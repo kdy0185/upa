@@ -128,15 +128,15 @@ class DataParseServiceTest {
         int unit4 = 12;
 
         // when
-        String result1 = dataParseService.dataParseUnit(str1, unit1);
-        String result2 = dataParseService.dataParseUnit(str1, unit2);
-        String result3 = dataParseService.dataParseUnit(str1, unit3);
-        String result4 = dataParseService.dataParseUnit(str1, unit4);
+//        String result1 = dataParseService.dataParseUnit(str1, unit1);
+//        String result2 = dataParseService.dataParseUnit(str1, unit2);
+//        String result3 = dataParseService.dataParseUnit(str1, unit3);
+//        String result4 = dataParseService.dataParseUnit(str1, unit4);
 
         // then
-        System.out.println(result1);
-        System.out.println(result2);
-        System.out.println(result3);
-        System.out.println(result4);
+//        System.out.println(result1);
+//        System.out.println(result2);
+//        System.out.println(result3);
+//        System.out.println(result4);
     }
 }

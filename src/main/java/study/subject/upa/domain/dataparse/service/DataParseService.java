@@ -9,6 +9,8 @@ import static study.subject.upa.global.util.DataParseUtil.trimWhiteSpace;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
+import study.subject.upa.domain.dataparse.dto.DataParseRequest;
+import study.subject.upa.domain.dataparse.dto.DataParseResponse;
 import study.subject.upa.global.support.CustomComparator;
 import study.subject.upa.global.support.CustomStreamSupport;
 
@@ -20,6 +22,26 @@ import study.subject.upa.global.support.CustomStreamSupport;
  */
 @Service
 public class DataParseService {
+
+    /**
+     * <p>URL 파싱</p>
+     *
+     * @param request (요청 정보)
+     * @return DataParseResponse (응답 데이터)
+     */
+    public DataParseResponse dataParsing(DataParseRequest request) {
+        String resultData = dataParseUrl(request.getUrl());
+
+        // 노출 유형 - H : Html 태그 제외, T : Text 전체
+        if ("H".equals(request.getDataType())) {
+            resultData = dataParseHtml(resultData);
+        }
+
+        resultData = dataParseAlphaNumeric(resultData);
+        resultData = dataParseSort(resultData);
+        resultData = dataParseSwap(resultData);
+        return dataParseUnit(resultData, request.getUnit());
+    }
 
     /**
      * <p>URL 파싱</p>
@@ -99,17 +121,9 @@ public class DataParseService {
      *
      * @param str  (출력할 문자열)
      * @param unit (출력 단위)
-     * @return String (변경 후 문자)
+     * @return DataParseResponse (응답 데이터)
      */
-    public String dataParseUnit(String str, int unit) {
-        if (isEmpty(str)) {
-            return "";
-        }
-
-        if (unit <= 0) {
-            return "유효한 단위가 아닙니다.";
-        }
-
+    public DataParseResponse dataParseUnit(String str, int unit) {
         if (str.length() <= unit) {
             unit = str.length();
         }

@@ -1,4 +1,4 @@
-package study.subject.upa.domain.dataparse.entity;
+package study.subject.upa.domain.dataparse.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.NotEmpty;
@@ -9,13 +9,13 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 /**
- * @Class : DataParseVO
+ * @Class : DataParseRequest
  * @Author : KDW
- * @Date : 2022-03-12
- * @Description : URL 파싱 API VO
+ * @Date : 2022-03-14
+ * @Description : URL 파싱 API Request
  */
 @Data
-public class DataParseVO {
+public class DataParseRequest {
 
     @ApiModelProperty(value = "파싱할 URL")
     @NotEmpty(message = "URL은 필수로 입력해야 합니다.")

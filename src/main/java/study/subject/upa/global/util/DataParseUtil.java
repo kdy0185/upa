@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import study.subject.upa.domain.dataparse.dto.DataParseResponse;
 
 /**
  * @Class : DataParseUtil
@@ -78,11 +79,13 @@ public class DataParseUtil {
     /**
      * <p>출력 문자 포맷</p>
      *
-     * @param unitStr (몫)
+     * @param piecesStr (몫)
      * @param restStr (나머지)
-     * @return String (포맷 후 문자)
+     * @return DataParseResponse (응답 데이터)
      */
-    public static String dataFormat(String unitStr, String restStr) {
-        return "몫 : " + unitStr + System.lineSeparator() + "나머지 : " + restStr;
+    public static DataParseResponse dataFormat(String piecesStr, String restStr) {
+        piecesStr = "몫 : " + piecesStr;
+        restStr = "나머지 : " + restStr;
+        return new DataParseResponse(piecesStr, restStr);
     }
 }
